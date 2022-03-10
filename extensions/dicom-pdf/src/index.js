@@ -64,18 +64,7 @@ export default {
     return {
       definitions: {
         setToolActive: {
-          commandFn: ({ toolName, element }) => {
-            if (!toolName) {
-              console.warn('No toolname provided to setToolActive command');
-            }
-
-            // Set same tool or alt tool
-            const toolAlias = _getToolAlias(toolName);
-
-            cornerstoneTools.setToolActiveForElement(element, toolAlias, {
-              mouseButtonMask: 1,
-            });
-          },
+          commandFn: () => null,
           storeContexts: [],
           options: {},
         },
@@ -85,9 +74,3 @@ export default {
   },
   getSopClassHandlerModule,
 };
-
-function _getToolAlias(toolName) {
-  let toolAlias = toolName;
-
-  return toolAlias;
-}

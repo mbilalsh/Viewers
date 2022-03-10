@@ -11,14 +11,12 @@ const sopClassUids = Object.values(SOP_CLASS_UIDS);
 
 
 const _getDisplaySetsFromSeries = (instances, servicesManager, extensionManager) => {
-  console.log('Called getDisplaySetsFromSeries', instances);
   const dataSource = extensionManager.getActiveDataSource()[0];
   return instances
     .map(instance => {
       const { Modality, SOPInstanceUID, EncapsulatedDocument } = instance;
       const { SeriesDescription, MIMETypeOfEncapsulatedDocument, } = instance;
-      const { SeriesNumber, SeriesDate, SeriesInstanceUID, StudyInstanceUID, NumberOfFrames } = instance;
-      console.log('Display PDF of type', MIMETypeOfEncapsulatedDocument, EncapsulatedDocument);
+      const { SeriesNumber, SeriesDate, SeriesInstanceUID, StudyInstanceUID, } = instance;
       const pdfUrl = dataSource.retrieve.directURL({ instance, tag: 'EncapsulatedDocument', defaultType: MIMETypeOfEncapsulatedDocument });
       const displaySet = {
         //plugin: id,
@@ -39,7 +37,8 @@ const _getDisplaySetsFromSeries = (instances, servicesManager, extensionManager)
         isDerivedDisplaySet: true,
         isLoaded: false,
         sopClassUids,
-        numImageFrames: NumberOfFrames,
+        numImageFrames: 0,
+        numInstances: 1,
         instance,
       };
       return displaySet;
