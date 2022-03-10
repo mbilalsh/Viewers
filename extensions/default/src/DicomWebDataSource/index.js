@@ -53,17 +53,20 @@ function createDicomWebApi(dicomWebConfig, UserAuthenticationService) {
     supportsWildcard,
     supportsReject,
     staticWado,
+    singlepart,
   } = dicomWebConfig;
 
   const qidoConfig = {
     url: qidoRoot,
     staticWado,
+    singlepart,
     headers: UserAuthenticationService.getAuthorizationHeader(),
     errorInterceptor: errorHandler.getHTTPErrorHandler(),
   };
 
   const wadoConfig = {
     url: wadoRoot,
+    singlepart,
     headers: UserAuthenticationService.getAuthorizationHeader(),
     errorInterceptor: errorHandler.getHTTPErrorHandler(),
   };

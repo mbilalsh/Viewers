@@ -1,5 +1,6 @@
 import toolbarButtons from './toolbarButtons.js';
 import { hotkeys } from '@ohif/core';
+import ConfigPoint from 'config-point';
 
 const ohif = {
   layout: 'org.ohif.default.layoutTemplateModule.viewerLayout',
@@ -13,30 +14,31 @@ const tracked = {
   viewport: 'org.ohif.measurement-tracking.viewportModule.cornerstone-tracked',
 };
 
-const dicomsr = {
-  sopClassHandler: 'org.ohif.dicom-sr.sopClassHandlerModule.dicom-sr',
-  viewport: 'org.ohif.dicom-sr.viewportModule.dicom-sr',
-};
 
-const dicomvideo = {
-  sopClassHandler: 'org.ohif.dicom-video.sopClassHandlerModule.dicom-video',
-  viewport: 'org.ohif.dicom-video.viewportModule.dicom-video',
-}
+const { longitudinalMode } = ConfigPoint.register({
+  longitudinalMode: {
+    configBase: "modeConfig",
+    // Add custom settings for tracked measurements
+    panels: {
+      leftPanels: [tracked.thumbnailList],
+      rightPanels: [tracked.measurements],
+      viewports: {
+        images: {
+          namespace: tracked.viewport,
+          displaySetsToDisplay: [ohif.sopClassHandler],
+        },
+      },
+      // Can customize sopClassHandlers here if desired
+    },
+  },
+});
 
-const dicompdf = {
-  sopClassHandler: 'org.ohif.dicom-pdf.sopClassHandlerModule.dicom-pdf',
-  viewport: 'org.ohif.dicom-pdf.viewportModule.dicom-pdf',
-}
-
-export default function mode({ modeConfiguration }) {
-  return {
-    // TODO: We're using this as a route segment
-    // We should not be.
+const { longitudinalMode: updatedLongitudinalMode } = ConfigPoint.register({
+  longitudinalMode: {
+    // id is used as a path route, shouldn't be
     id: 'viewer',
     displayName: 'Basic Viewer',
-    /**
-     * Lifecycle hooks
-     */
+    // Lifecycle hooks
     onModeEnter: ({ servicesManager, extensionManager }) => {
       // Note: If tool's aren't initialized, this doesn't have viewport/tools
       // to "set active". This is mostly for the toolbar UI state?
@@ -64,7 +66,7 @@ export default function mode({ modeConfiguration }) {
         'MoreTools',
       ]);
     },
-    onModeExit: () => {},
+    onModeExit: () => { },
     validationTags: {
       study: [],
       series: [],
@@ -83,51 +85,21 @@ export default function mode({ modeConfiguration }) {
         },*/
         layoutTemplate: ({ location, servicesManager }) => {
           return {
-            id: ohif.layout,
-            props: {
-              leftPanels: [tracked.thumbnailList],
-              // TODO: Should be optional, or required to pass empty array for slots?
-              rightPanels: [tracked.measurements],
-              viewports: [
-                {
-                  namespace: tracked.viewport,
-                  displaySetsToDisplay: [ohif.sopClassHandler],
-                },
-                {
-                  namespace: dicomsr.viewport,
-                  displaySetsToDisplay: [dicomsr.sopClassHandler],
-                },
-                {
-                  namespace: dicomvideo.viewport,
-                  displaySetsToDisplay: [dicomvideo.sopClassHandler],
-                },
-                {
-                  namespace: dicompdf.viewport,
-                  displaySetsToDisplay: [dicompdf.sopClassHandler],
-                },
-              ],
-            },
+            id: longitudinalMode.layout,
+            props: longitudinalMode.panels,
           };
         },
       },
     ],
-    extensions: [
-      'org.ohif.default',
-      'org.ohif.cornerstone',
-      'org.ohif.measurement-tracking',
-      'org.ohif.dicom-sr',
-      'org.ohif.dicom-video',
-      'org.ohif.dicom-pdf',
-    ],
-    hangingProtocols: [ohif.hangingProtocols],
-    sopClassHandlers: [
-      dicomvideo.sopClassHandler,
-      ohif.sopClassHandler,
-      dicomsr.sopClassHandler,
-      dicompdf.sopClassHandler,
-    ],
     hotkeys: [...hotkeys.defaults.hotkeyBindings],
-  };
-}
+  },
 
-window.longitudinalMode = mode({});
+  // Add the longitudinal mode as a default
+  defaultConfig: {
+    modes: {
+      longitudinal: longitudinalMode,
+    },
+  },
+});
+
+export default longitudinalMode;

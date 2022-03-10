@@ -17,7 +17,6 @@ import {
   errorHandler
   // utils,
 } from '@ohif/core';
-import ConfigPoint from 'config-point';
 
 /**
  * @param {object|func} appConfigOrFunc - application configuration, or a function that returns application configuration
@@ -49,10 +48,6 @@ function appInit(appConfigOrFunc, defaultExtensions) {
     hotkeysManager,
     appConfig,
   });
-
-  // Load the default theme settings
-  const defaultTheme = config && config.defaultTheme || 'theme';
-  ConfigPoint.load(defaultTheme, '/theme', 'theme');
 
   servicesManager.registerServices([
     UINotificationService,
@@ -87,14 +82,8 @@ function appInit(appConfigOrFunc, defaultExtensions) {
   // TODO: We no longer init webWorkers at app level
   // TODO: We no longer init the user Manager
 
-  if (!appConfig.modes) {
+  if (!appConfig.modes || !appConfig.modes.length) {
     throw new Error('No modes are defined! Check your app-config.js');
-  }
-
-  // TODO: Remove this
-  if (!appConfig.modes.length) {
-    appConfig.modes.push(window.longitudinalMode);
-    // appConfig.modes.push(window.segmentationMode);
   }
 
   return {

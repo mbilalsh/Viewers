@@ -1,6 +1,7 @@
 import React from 'react';
 import getSopClassHandlerModule from './getSopClassHandlerModule';
 import id from './id.js';
+import './pdfConfig';
 
 const Component = React.lazy(() => {
   return import(

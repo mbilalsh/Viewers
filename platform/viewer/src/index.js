@@ -5,6 +5,7 @@ import 'regenerator-runtime/runtime';
 import App from './App.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ConfigPoint, loadSearchConfigPoint } from "config-point";
 
 /**
  * EXTENSIONS
@@ -26,21 +27,43 @@ import OHIFDICOMSRExtension from '@ohif/extension-dicom-sr';
 import OHIFDICOMVIDEOExtension from '@ohif/extension-dicom-video';
 import OHIFDICOMPDFExtension from '@ohif/extension-dicom-pdf';
 
-/** Combine our appConfiguration and "baked-in" extensions */
-const appProps = {
-  config: window ? window.config : {},
+const config = window && window.config || {};
+const defaultTheme = config && config.defaultTheme || 'theme';
+const { defaultConfig } = ConfigPoint.register({
+  defaultConfig: {
+    configBase: {
+      modes: [],
+      extensions: [],
+      showStudyList: true,
+    },
+  },
+})
+// Deal with older configurations
+if (config.modes && !config.modes.length) delete config.modes;
+if (config.extensions && !config.extensions.length) delete config.extensions;
+
+
+/**
+ * Load the default theme settings,
+ * and then render the app in the then block so that themes get
+ * loaded early enough to modify the initial render.
+ */
+loadSearchConfigPoint(defaultTheme, '/theme', 'theme').then(() => {
+  const appProps = {
+    config: { ...defaultConfig, ...config },
   defaultExtensions: [
-    OHIFDefaultExtension,
-    OHIFCornerstoneExtension,
-    OHIFMeasurementTrackingExtension,
-    OHIFDICOMSRExtension,
-    OHIFDICOMVIDEOExtension,
-    OHIFDICOMPDFExtension,
-  ],
-};
-
+      OHIFDefaultExtension,
+      OHIFCornerstoneExtension,
+      OHIFMeasurementTrackingExtension,
+      OHIFDICOMSRExtension,
+      OHIFDICOMVIDEOExtension,
+      OHIFDICOMPDFExtension,
+    ],
+  };
 /** Create App */
-const app = React.createElement(App, appProps, null);
-
+  const app = React.createElement(App, appProps, null);
 /** Render */
 ReactDOM.render(app, document.getElementById('root'));
+}).catch(reason => {
+  console.warn("Unable to load application because", reason);
+})

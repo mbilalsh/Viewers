@@ -385,61 +385,16 @@ hotkeysManager.setHotkeys(hotkeys);
 
 ## Registration
 
-Upon release modes will also be plugged into the app via configuration, but this
-is still an area which is under development/discussion, and they are currently
-pulled from the `window` in beta.
+Modes are registered via config-point configurations.  By default they are
+listed in the `defaultConfig.modes` list, and all modes registered will get used.
+It is also possible to just explicitly define the list of modes in the config
+object.
 
 ```js title="modes/longitudinal/src/index.js"
-export default function mode() {
-  return {
-    id: 'viewer',
-    displayName: 'Basic Viewer',
-    onModeEnter: () => {
-      /**...**/
-    },
-    onModeExit: () => {
-      /**...**/
-    },
-    validationTags: {
-      /**...**/
-    },
-    isValidMode: () => {
-      /**...**/
-    },
-    routes: [
-      {
-        path: 'longitudinal',
-        init: () => {
-          /**...**/
-        },
-        layoutTemplate: () => {
-          /**...**/
-        },
-      },
-    ],
-    extensions: [
-      /**...**/
-    ],
-    hangingProtocols: [
-      /**...**/
-    ],
-    sopClassHandlers: [
-      /**...**/
-    ],
-    hotkeys: [
-      /**...**/
-    ],
-  };
-}
-
-window.longitudinalMode = mode({});
+TODO before commit
 ```
 
-and inside `@ohif/viewer` we have:
+and inside `@ohif/viewer/index` we have:
 
-```js title="platform/viewer/src/appInit.js"
-if (!appConfig.modes.length) {
-  appConfig.modes.push(window.longitudinalMode);
-  // appConfig.modes.push(window.segmentationMode);
-}
+```js title="platform/viewer/src/index.js"
 ```

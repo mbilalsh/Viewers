@@ -1,7 +1,9 @@
-const id = 'org.ohif.dicom-video';
+const Name = 'dicom-video';
+const id = `org.ohif.${Name}`;
 
 export default id;
 
-const SOPClassHandlerName = 'dicom-video';
-const SOPClassHandlerId = `${id}.sopClassHandlerModule.${SOPClassHandlerName}`;
-export { SOPClassHandlerName, SOPClassHandlerId };
+const SOPClassHandlerId = `${id}.sopClassHandlerModule.${Name}`;
+const ViewportModuleId = `${id}.viewportModule.${Name}`;
+
+export { Name, SOPClassHandlerId, ViewportModuleId };

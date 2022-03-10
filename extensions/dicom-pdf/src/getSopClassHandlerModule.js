@@ -1,4 +1,4 @@
-import { SOPClassHandlerName, SOPClassHandlerId } from './id';
+import { Name, SOPClassHandlerId } from './id';
 import { utils, classes } from '@ohif/core';
 
 const { ImageSet } = classes;
@@ -54,10 +54,9 @@ export default function getSopClassHandlerModule({ servicesManager, extensionMan
     );
   };
 
-  console.log("Registering", SOPClassHandlerName, sopClassUids);
   return [
     {
-      name: SOPClassHandlerName,
+      name: Name,
       sopClassUids,
       getDisplaySetsFromSeries,
     },

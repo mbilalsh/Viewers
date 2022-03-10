@@ -1,6 +1,7 @@
 import React from 'react';
 import getSopClassHandlerModule from './getSopClassHandlerModule';
 import id from './id.js';
+import './videoConfig';
 
 const Component = React.lazy(() => {
   return import(

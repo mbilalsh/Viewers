@@ -7,6 +7,7 @@ import { DragAndDropProvider, ImageViewerProvider } from '@ohif/ui';
 import { useQuery } from '@hooks';
 import ViewportGrid from '@components/ViewportGrid';
 import Compose from './Compose';
+import "./modeConfig";
 
 async function defaultRouteInit({
   servicesManager,

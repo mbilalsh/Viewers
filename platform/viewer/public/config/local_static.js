@@ -1,9 +1,6 @@
 window.config = {
   routerBasename: '/',
   // whiteLabelling: {},
-  extensions: [],
-  modes: [],
-  showStudyList: true,
   // filterQueryParam: false,
   dataSources: [
     {
@@ -23,6 +20,7 @@ window.config = {
         supportsFuzzyMatching: false,
         supportsWildcard: true,
         staticWado: true,
+        singlepart: "bulkdata,video",
       },
     },
     {
