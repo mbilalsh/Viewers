@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 function OHIFCornerstonePdfViewport({
   displaySet,
 }) {
+  const [url, setUrl] = useState(null);
   const { pdfUrl } = displaySet;
+  useEffect(async () => {
+    setUrl(await pdfUrl);
+  });
 
-  const url = pdfUrl;
-
-  // Need to copies of the source to fix a firefox bug
   return (
     <div className="bg-primary-black w-full h-full">
       <object data={url} type="application/pdf" className="w-full h-full">
@@ -16,5 +18,9 @@ function OHIFCornerstonePdfViewport({
     </div>
   )
 }
+
+OHIFCornerstonePdfViewport.propTypes = {
+  displaySet: PropTypes.object.isRequired,
+};
 
 export default OHIFCornerstonePdfViewport;
