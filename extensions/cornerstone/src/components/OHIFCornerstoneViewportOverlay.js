@@ -50,11 +50,18 @@ class OHIFCornerstoneViewportOverlay extends PureComponent {
 
     const generalStudyModule =
       cornerstone.metaData.get('generalStudyModule', imageId) || {};
-    const { studyDate, studyTime, studyDescription, patientAge, station } = generalStudyModule;
+    const { studyDate, studyTime, studyDescription,  institutionName } = generalStudyModule;
 
     const patientModule =
       cornerstone.metaData.get('patientModule', imageId) || {};
-    const { patientId, patientName, patientBirthDate } = patientModule;
+    const { patientId, patientName, patientBirthDate  } = patientModule;
+
+    //console.log(patientModule);
+
+    const patientStudyModule =
+      cornerstone.metaData.get('patientStudyModule', imageId) || {};
+    const { patientAge  } = patientStudyModule;
+
 
     //console.log(cornerstone.metaData.get('patientModule', imageId) || {})
 
@@ -118,19 +125,23 @@ class OHIFCornerstoneViewportOverlay extends PureComponent {
       );
     };
 
+
+    // console.log(formatDICOMDate(patientBirthDate))
+    // console.log(institutionName)
+
     const normal = (
       <React.Fragment>
         <div className="top-left overlay-element">
           <div>{formatPN(patientName)}</div>
           <div>{patientId}</div>
-          <div>{patientBirthDate} / {patientAge} </div>
+          <div>Dob: {patientBirthDate? formatDICOMDate(patientBirthDate):""} / Age: {patientAge} </div>
         </div>
         <div className="top-right overlay-element">
           <div>{studyDescription}</div>
           <div>
             {formatDICOMDate(studyDate)} {formatDICOMTime(studyTime)}
           </div>
-          <div>{station} </div>
+          <div>{institutionName} </div>
 
         </div>
         <div className="bottom-right overlay-element">

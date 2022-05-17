@@ -184,7 +184,8 @@ class MetadataProvider {
 
   _getCornerstoneWADOImageLoaderTag(wadoImageLoaderTag, instance) {
 
-    console.log(instance);
+
+    //console.log(instance);
 
     let metadata;
 
@@ -216,8 +217,7 @@ class MetadataProvider {
         metadata = {
           patientAge: instance.PatientAge,
           patientSize: instance.PatientSize,
-          patientWeight: instance.PatientWeight,
-          station: instance.InstitutionName
+          patientWeight: instance.PatientWeight
         };
         break;
       case WADO_IMAGE_LOADER_TAGS.IMAGE_PLANE_MODULE:
@@ -414,7 +414,7 @@ class MetadataProvider {
         metadata = {
           patientName,
           patientId: instance.PatientID,
-          PatientBirthDate :instance.PatientBirthDate
+          patientBirthDate :instance.PatientBirthDate
         };
 
         break;
@@ -435,6 +435,8 @@ class MetadataProvider {
           studyDate: instance.StudyDate,
           studyTime: instance.StudyTime,
           accessionNumber: instance.AccessionNumber,
+          institutionName: instance.InstitutionName
+
         };
 
         break;
