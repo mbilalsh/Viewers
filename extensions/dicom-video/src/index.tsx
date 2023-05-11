@@ -33,6 +33,8 @@ const dicomVideoExtension = {
    */
   getViewportModule({ servicesManager, extensionManager }) {
     const ExtendedOHIFCornerstoneVideoViewport = props => {
+      console.log('props');
+      console.log({ ...props });
       return (
         <OHIFCornerstoneVideoViewport
           servicesManager={servicesManager}

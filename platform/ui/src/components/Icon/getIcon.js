@@ -71,6 +71,8 @@ import tabSegmentation from './../../assets/icons/tab-segmentation.svg';
 import uiArrowDown from './../../assets/icons/ui-arrow-down.svg';
 import uiArrowUp from './../../assets/icons/ui-arrow-up.svg';
 import loadingOHIFMark from './../../assets/icons/loading-ohif-mark.svg';
+import loadingEMSLMark from './../../assets/icons/loading-emsl-mark.svg';
+
 import notificationsInfo from './../../assets/icons/notifications-info.svg';
 import notificationsWarning from './../../assets/icons/notifications-warning.svg';
 import notificationsError from './../../assets/icons/notifications-error.svg';
@@ -197,6 +199,7 @@ const ICONS = {
   'checkbox-checked': checkboxChecked,
   'checkbox-unchecked': checkboxUnchecked,
   'loading-ohif-mark': loadingOHIFMark,
+  'loading-emsl-mark': loadingEMSLMark,
   'notifications-info': notificationsInfo,
   'notifications-error': notificationsError,
   'notifications-success': notificationsSuccess,

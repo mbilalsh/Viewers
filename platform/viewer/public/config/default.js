@@ -85,7 +85,7 @@ window.config = {
   },
   // whiteLabeling: {
   //   /* Optional: Should return a React component to be rendered in the "Logo" section of the application's Top Navigation bar */
-  //   createLogoComponentFn: function (React) {
+  //   createLogoComponentFn: function(React) {
   //     return React.createElement(
   //       'a',
   //       {
@@ -94,12 +94,11 @@ window.config = {
   //         className: 'text-purple-600 line-through',
   //         href: '/',
   //       },
-  //       React.createElement('img',
-  //         {
-  //           src: './customLogo.svg',
-  //           className: 'w-8 h-8',
-  //         }
-  //       ))
+  //       React.createElement('img', {
+  //         src: './custom-logo.svg',
+  //         className: 'w-8 h-8',
+  //       })
+  //     );
   //   },
   // },
   defaultDataSourceName: 'dicomweb',

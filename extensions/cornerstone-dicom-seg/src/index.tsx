@@ -67,6 +67,8 @@ const extension = {
 
   getViewportModule({ servicesManager, extensionManager }) {
     const ExtendedOHIFCornerstoneSEGViewport = props => {
+      console.log("props");
+      console.log({ ...props });
       return (
         <OHIFCornerstoneSEGViewport
           servicesManager={servicesManager}

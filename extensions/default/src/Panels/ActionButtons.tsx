@@ -13,9 +13,9 @@ function ActionButtons({ onExportClick, onCreateReportClick }) {
         <Button className="px-2 py-2 text-base" onClick={onExportClick}>
           {t('Export CSV')}
         </Button>
-        <Button className="px-2 py-2 text-base" onClick={onCreateReportClick}>
+        {/* <Button className="px-2 py-2 text-base" onClick={onCreateReportClick}>
           {t('Create Report')}
-        </Button>
+        </Button> */}
       </ButtonGroup>
     </React.Fragment>
   );

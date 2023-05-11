@@ -21,9 +21,9 @@ const Header = () => {
           {/* <Toolbar tools={tools} activeTool={activeTool} moreTools={tools} /> */}
         </div>
         <div className="flex items-center">
-          <span className="mr-3 text-lg text-common-light">
+          {/* <span className="mr-3 text-lg text-common-light">
             FOR INVESTIGATIONAL USE ONLY
-          </span>
+          </span> */}
           <IconButton
             variant="text"
             color="inherit"

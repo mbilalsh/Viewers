@@ -90,54 +90,56 @@ const cornerstoneExtension: Types.Extensions.Extension = {
       //   commandsManager.runCommand('jumpToImage', jumpData);
       // };
       const { toolbarService } = (servicesManager as ServicesManager).services;
-
+      console.log("props");
+      console.log({...props});
       return (
-        <OHIFCornerstoneViewport
-          {...props}
-          toolbarService={toolbarService}
-          servicesManager={servicesManager}
-          commandsManager={commandsManager}
-        />
+
+      <OHIFCornerstoneViewport
+        {...props}
+        toolbarService={toolbarService}
+        servicesManager={servicesManager}
+        commandsManager={commandsManager}
+      />
       );
     };
 
-    return [
-      {
-        name: 'cornerstone',
-        component: ExtendedOHIFCornerstoneViewport,
-      },
-    ];
+return [
+  {
+    name: 'cornerstone',
+    component: ExtendedOHIFCornerstoneViewport,
   },
-  getCommandsModule,
+];
+  },
+getCommandsModule,
   getCustomizationModule,
   getUtilityModule({ servicesManager }) {
-    return [
-      {
-        name: 'common',
-        exports: {
-          getCornerstoneLibraries: () => {
-            return { cornerstone, cornerstoneTools };
-          },
-          getEnabledElement,
-          dicomLoaderService,
-          registerColormap,
+  return [
+    {
+      name: 'common',
+      exports: {
+        getCornerstoneLibraries: () => {
+          return { cornerstone, cornerstoneTools };
         },
+        getEnabledElement,
+        dicomLoaderService,
+        registerColormap,
       },
-      {
-        name: 'core',
-        exports: {
-          Enums: cs3DEnums,
-        },
+    },
+    {
+      name: 'core',
+      exports: {
+        Enums: cs3DEnums,
       },
-      {
-        name: 'tools',
-        exports: {
-          toolNames,
-          Enums: cs3DToolsEnums,
-        },
+    },
+    {
+      name: 'tools',
+      exports: {
+        toolNames,
+        Enums: cs3DToolsEnums,
       },
-    ];
-  },
+    },
+  ];
+},
 };
 
 export type { PublicViewportOptions };

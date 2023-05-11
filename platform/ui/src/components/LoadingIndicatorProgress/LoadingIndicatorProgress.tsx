@@ -17,7 +17,7 @@ function LoadingIndicatorProgress({ className, textBlock, progress }) {
         className
       )}
     >
-      <Icon name="loading-ohif-mark" className="text-white w-12 h-12" />
+      <Icon name="loading-emsl-mark" className="text-white w-12 h-12" />
       <div className="w-48">
         <ProgressLoadingBar></ProgressLoadingBar>
       </div>

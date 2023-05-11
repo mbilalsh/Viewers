@@ -310,6 +310,7 @@ const toolbarButtons = [
       ],
     },
   },
+
   {
     id: 'Layout',
     type: 'ohif.layoutSelector',
@@ -355,6 +356,69 @@ const toolbarButtons = [
       ],
     },
   },
+
+  {
+    id: 'RotateRight',
+    type: 'ohif.action',
+    props: {
+      type: 'action',
+      icon: 'tool-rotate-right',
+      label: 'Rotate Right',
+      commands: [
+        {
+          commandName: 'rotateViewportCW',
+          commandOptions: {},
+          context: 'CORNERSTONE',
+        },
+      ],
+    },
+  },
+  // _createToolButton(
+  //   'Probe',
+  //   'tool-probe',
+  //   'Probe',
+  //   [
+  //     {
+  //       commandName: 'setToolActive',
+  //       commandOptions: {
+  //         toolName: 'DragProbe',
+  //       },
+  //       context: 'CORNERSTONE',
+  //     },
+  //   ],
+  //   'Probe'
+  // ),
+  {
+    id: 'Probe',
+    type: 'ohif.action',
+    props: {
+      type: 'tool',
+      icon: 'tool-probe',
+      label: 'Probe',
+      commands: [
+        {
+          commandName: 'setToolActive',
+          commandOptions: { toolName: 'DragProbe' },
+          context: 'CORNERSTONE',
+        },
+      ],
+    },
+  },
+
+  // _createActionButton(
+  //   'rotate-right',
+  //   'tool-rotate-right',
+  //   'Rotate Right',
+  //   [
+  //     {
+  //       commandName: 'rotateViewportCW',
+  //       commandOptions: {},
+  //       context: 'CORNERSTONE',
+  //     },
+  //   ],
+  //   'Rotate +90'
+  // ),
+
   // More...
   {
     id: 'MoreTools',
@@ -395,19 +459,19 @@ const toolbarButtons = [
           ],
           'Reset'
         ),
-        _createActionButton(
-          'rotate-right',
-          'tool-rotate-right',
-          'Rotate Right',
-          [
-            {
-              commandName: 'rotateViewportCW',
-              commandOptions: {},
-              context: 'CORNERSTONE',
-            },
-          ],
-          'Rotate +90'
-        ),
+        // _createActionButton(
+        //   'rotate-right',
+        //   'tool-rotate-right',
+        //   'Rotate Right',
+        //   [
+        //     {
+        //       commandName: 'rotateViewportCW',
+        //       commandOptions: {},
+        //       context: 'CORNERSTONE',
+        //     },
+        //   ],
+        //   'Rotate +90'
+        // ),
         _createActionButton(
           'flip-horizontal',
           'tool-flip-horizontal',
@@ -468,21 +532,21 @@ const toolbarButtons = [
           ],
           'Invert Colors'
         ),
-        _createToolButton(
-          'Probe',
-          'tool-probe',
-          'Probe',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'DragProbe',
-              },
-              context: 'CORNERSTONE',
-            },
-          ],
-          'Probe'
-        ),
+        // _createToolButton(
+        //   'Probe',
+        //   'tool-probe',
+        //   'Probe',
+        //   [
+        //     {
+        //       commandName: 'setToolActive',
+        //       commandOptions: {
+        //         toolName: 'DragProbe',
+        //       },
+        //       context: 'CORNERSTONE',
+        //     },
+        //   ],
+        //   'Probe'
+        // ),
         _createToggleButton(
           'cine',
           'tool-cine',

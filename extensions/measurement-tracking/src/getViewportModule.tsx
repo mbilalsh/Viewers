@@ -20,6 +20,8 @@ function getViewportModule({
   extensionManager,
 }) {
   const ExtendedOHIFCornerstoneTrackingViewport = props => {
+    // console.log("props");
+    // console.log({...props});
     return (
       <OHIFCornerstoneViewport
         servicesManager={servicesManager}

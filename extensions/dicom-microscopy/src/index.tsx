@@ -64,8 +64,10 @@ export default {
 
       const [viewportGrid, viewportGridService] = useViewportGrid();
       const { viewports, activeViewportIndex } = viewportGrid;
-
+      console.log("props");
+      console.log({ ...props });
       return (
+
         <MicroscopyViewport
           servicesManager={servicesManager}
           extensionManager={extensionManager}

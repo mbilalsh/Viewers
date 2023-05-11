@@ -129,6 +129,8 @@ function modeFactory() {
         'Layout',
         'MPR',
         'Crosshairs',
+        'RotateRight',
+        'Probe',
         'MoreTools',
       ]);
 

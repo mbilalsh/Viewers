@@ -20,7 +20,7 @@ function ActionButtons({ onExportClick, onCreateReportClick, disabled }) {
       >
         {t('Export')}
       </Button>
-      <Button
+      {/* <Button
         className="ml-2 px-2 text-base"
         variant={disabled ? 'disabled' : 'outlined'}
         size="initial"
@@ -30,7 +30,7 @@ function ActionButtons({ onExportClick, onCreateReportClick, disabled }) {
         disabled={disabled}
       >
         {t('Create Report')}
-      </Button>
+      </Button> */}
     </React.Fragment>
   );
 }
