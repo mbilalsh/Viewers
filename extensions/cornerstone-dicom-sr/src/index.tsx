@@ -45,6 +45,8 @@ const dicomSRExtension = {
    */
   getViewportModule({ servicesManager, extensionManager }) {
     const ExtendedOHIFCornerstoneSRViewport = props => {
+      console.log('props');
+      console.log({ ...props });
       return (
         <OHIFCornerstoneSRViewport
           servicesManager={servicesManager}

@@ -32,6 +32,8 @@ const dicomPDFExtension = {
    */
   getViewportModule({ servicesManager, extensionManager }) {
     const ExtendedOHIFCornerstonePdfViewport = props => {
+      console.log('props');
+      console.log({ ...props });
       return (
         <OHIFCornerstonePdfViewport
           servicesManager={servicesManager}

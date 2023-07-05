@@ -114,7 +114,7 @@ function OHIFCornerstoneSEGViewport(props) {
         }}
         onElementEnabled={onElementEnabled}
         onElementDisabled={onElementDisabled}
-        // initialImageIndex={initialImageIndex}
+      // initialImageIndex={initialImageIndex}
       ></Component>
     );
   }, [viewportIndex, segDisplaySet, toolGroupId]);
@@ -278,7 +278,7 @@ function OHIFCornerstoneSEGViewport(props) {
   if (
     !referencedDisplaySetRef.current ||
     referencedDisplaySet.displaySetInstanceUID !==
-      referencedDisplaySetRef.current.displaySet.displaySetInstanceUID
+    referencedDisplaySetRef.current.displaySet.displaySetInstanceUID
   ) {
     return null;
   }
@@ -300,6 +300,9 @@ function OHIFCornerstoneSEGViewport(props) {
     PatientName,
     PatientSex,
     PatientAge,
+    PatientBirthDate,
+    AccessionNumber,
+    InstitutionName,
     SliceThickness,
     ManufacturerModelName,
     StudyDate,
@@ -336,12 +339,15 @@ function OHIFCornerstoneSEGViewport(props) {
           useAltStyling: true,
           studyDate: formatDate(StudyDate),
           seriesDescription: `SEG Viewport ${SeriesDescription}`,
+          accessionNumber: AccessionNumber,
           patientInformation: {
             patientName: PatientName
               ? OHIF.utils.formatPN(PatientName.Alphabetic)
               : '',
             patientSex: PatientSex || '',
             patientAge: PatientAge || '',
+            patientBirthDate: PatientBirthDate || '',
+            institutionName: InstitutionName || '',
             MRN: PatientID || '',
             thickness: SliceThickness ? `${SliceThickness.toFixed(2)}mm` : '',
             spacing:
@@ -390,11 +396,14 @@ function _getReferencedDisplaySetMetadata(referencedDisplaySet) {
     PatientAge: image0.PatientAge,
     SliceThickness: image0.SliceThickness,
     StudyDate: image0.StudyDate,
+    AccessionNumber: image0.AccessionNumber,
     SeriesDescription: image0.SeriesDescription,
     SeriesInstanceUID: image0.SeriesInstanceUID,
     SeriesNumber: image0.SeriesNumber,
     ManufacturerModelName: image0.ManufacturerModelName,
     SpacingBetweenSlices: image0.SpacingBetweenSlices,
+    PatientBirthDate: image0.PatientBirthDate,
+    InstitutionName: image0.InstitutionName
   };
 
   return referencedDisplaySetMetadata;

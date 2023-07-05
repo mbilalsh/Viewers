@@ -272,7 +272,7 @@ function OHIFCornerstoneRTViewport(props) {
   if (
     !referencedDisplaySetRef.current ||
     referencedDisplaySet.displaySetInstanceUID !==
-      referencedDisplaySetRef.current.displaySet.displaySetInstanceUID
+    referencedDisplaySetRef.current.displaySet.displaySetInstanceUID
   ) {
     return null;
   }
@@ -294,6 +294,9 @@ function OHIFCornerstoneRTViewport(props) {
     PatientName,
     PatientSex,
     PatientAge,
+    PatientBirthDate,
+    AccessionNumber,
+    InstitutionName,
     SliceThickness,
     ManufacturerModelName,
     StudyDate,
@@ -332,12 +335,15 @@ function OHIFCornerstoneRTViewport(props) {
           studyDate: formatDate(StudyDate),
           currentSeries: SeriesNumber,
           seriesDescription: `RT Viewport ${SeriesDescription}`,
+          accessionNumber: AccessionNumber,
           patientInformation: {
             patientName: PatientName
               ? OHIF.utils.formatPN(PatientName.Alphabetic)
               : '',
             patientSex: PatientSex || '',
             patientAge: PatientAge || '',
+            patientBirthDate: PatientBirthDate || '',
+            institutionName: InstitutionName || '',
             MRN: PatientID || '',
             thickness: SliceThickness ? `${SliceThickness.toFixed(2)}mm` : '',
             spacing:
@@ -384,6 +390,7 @@ function _getReferencedDisplaySetMetadata(referencedDisplaySet) {
     PatientName: image0.PatientName,
     PatientSex: image0.PatientSex,
     PatientAge: image0.PatientAge,
+    AccessionNumber: image0.AccessionNumber,
     SliceThickness: image0.SliceThickness,
     StudyDate: image0.StudyDate,
     SeriesDescription: image0.SeriesDescription,
@@ -391,6 +398,8 @@ function _getReferencedDisplaySetMetadata(referencedDisplaySet) {
     SeriesNumber: image0.SeriesNumber,
     ManufacturerModelName: image0.ManufacturerModelName,
     SpacingBetweenSlices: image0.SpacingBetweenSlices,
+    PatientBirthDate: image0.PatientBirthDate,
+    InstitutionName: image0.InstitutionName,
   };
 
   return referencedDisplaySetMetadata;

@@ -26,12 +26,20 @@ const ViewportActionBar = ({
   onDoubleClick,
   getStatusComponent,
 }: ViewportActionBarProps): JSX.Element => {
-  const { label, studyDate, seriesDescription, patientInformation } = studyData;
+  const {
+    label,
+    studyDate,
+    seriesDescription,
+    accessionNumber,
+    patientInformation,
+  } = studyData;
 
   const {
     patientName,
     patientSex,
     patientAge,
+    patientBirthDate,
+    institutionName,
     MRN,
     thickness,
     spacing,
@@ -63,7 +71,7 @@ const ViewportActionBar = ({
   const onPatientInfoClick = () => setShowPatientInfo(!showPatientInfo);
   const closePatientInfo = () => setShowPatientInfo(false);
 
-  const [showPatientInfo, setShowPatientInfo] = useState(false);
+  const [showPatientInfo, setShowPatientInfo] = useState(true);
   const [showSeriesDesc, setShowSeriesDesc] = useState(true);
   const [showArrows, setShowArrows] = useState(true);
   const [componentRootElem, setComponentRootElem] = useState(null);
@@ -167,6 +175,9 @@ const ViewportActionBar = ({
           patientName={patientName}
           patientSex={patientSex}
           patientAge={patientAge}
+          accessionNumber={accessionNumber}
+          institutionName={institutionName}
+          patientBirthDate={patientBirthDate}
           MRN={MRN}
           thickness={thickness}
           spacing={spacing}
@@ -186,10 +197,13 @@ ViewportActionBar.propTypes = {
     label: PropTypes.string.isRequired,
     studyDate: PropTypes.string.isRequired,
     seriesDescription: PropTypes.string.isRequired,
+    accessionNumber: PropTypes.string,
     patientInformation: PropTypes.shape({
       patientName: PropTypes.string.isRequired,
       patientSex: PropTypes.string.isRequired,
       patientAge: PropTypes.string.isRequired,
+      patientBirthDate: PropTypes.string,
+      institutionName: PropTypes.string,
       MRN: PropTypes.string.isRequired,
       thickness: PropTypes.string.isRequired,
       spacing: PropTypes.string.isRequired,

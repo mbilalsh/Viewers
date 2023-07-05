@@ -52,9 +52,12 @@ function TrackedCornerstoneViewport(props) {
     PatientName,
     PatientSex,
     PatientAge,
+    PatientBirthDate,
     SliceThickness,
     SpacingBetweenSlices,
     ManufacturerModelName,
+    InstitutionName,
+    AccessionNumber,
   } = displaySet.images[0];
 
   const updateIsTracked = useCallback(() => {
@@ -197,10 +200,13 @@ function TrackedCornerstoneViewport(props) {
           studyDate: formatDate(SeriesDate), // TODO: This is series date. Is that ok?
           currentSeries: SeriesNumber, // TODO - switch entire currentSeries to be UID based or actual position based
           seriesDescription: SeriesDescription,
+          accessionNumber: AccessionNumber,
           patientInformation: {
             patientName: PatientName ? OHIF.utils.formatPN(PatientName) : '',
             patientSex: PatientSex || '',
             patientAge: PatientAge || '',
+            patientBirthDate: PatientBirthDate || '',
+            institutionName: InstitutionName || '',
             MRN: PatientID || '',
             thickness: SliceThickness
               ? `${parseFloat(SliceThickness).toFixed(2)}mm`

@@ -38,6 +38,8 @@ const extension: Types.Extensions.Extension = {
     extensionManager,
   }: Types.Extensions.ExtensionParams) {
     const ExtendedOHIFCornerstoneRTViewport = props => {
+      console.log("props");
+      console.log({...props});
       return (
         <OHIFCornerstoneRTViewport
           servicesManager={servicesManager}

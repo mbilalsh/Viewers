@@ -349,6 +349,9 @@ function OHIFCornerstoneSRViewport(props) {
     PatientName,
     PatientSex,
     PatientAge,
+    PatientBirthDate,
+    AccessionNumber,
+    InstitutionName,
     SliceThickness,
     ManufacturerModelName,
     StudyDate,
@@ -381,6 +384,7 @@ function OHIFCornerstoneSRViewport(props) {
           useAltStyling: true,
           studyDate: formatDate(StudyDate),
           currentSeries: SeriesNumber,
+          accessionNumber: AccessionNumber,
           seriesDescription: SeriesDescription || '',
           patientInformation: {
             patientName: PatientName
@@ -388,6 +392,8 @@ function OHIFCornerstoneSRViewport(props) {
               : '',
             patientSex: PatientSex || '',
             patientAge: PatientAge || '',
+            patientBirthDate: PatientBirthDate || '',
+            institutionName: InstitutionName || '',
             MRN: PatientID || '',
             thickness: SliceThickness ? `${SliceThickness.toFixed(2)}mm` : '',
             spacing:
@@ -444,6 +450,9 @@ async function _getViewportReferencedDisplaySetData(
     PatientName: image0.PatientName,
     PatientSex: image0.PatientSex,
     PatientAge: image0.PatientAge,
+    PatientBirthDate: image0.PatientBirthDate,
+    InstitutionName: image0.InstitutionName,
+    AccessionNumber: image0.AccessionNumber,
     SliceThickness: image0.SliceThickness,
     StudyDate: image0.StudyDate,
     SeriesDescription: image0.SeriesDescription,

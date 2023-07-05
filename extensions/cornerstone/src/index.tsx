@@ -91,8 +91,10 @@ const cornerstoneExtension: Types.Extensions.Extension = {
       //   commandsManager.runCommand('jumpToImage', jumpData);
       // };
       const { toolbarService } = (servicesManager as ServicesManager).services;
-
+      console.log("props");
+      console.log({ ...props });
       return (
+
         <OHIFCornerstoneViewport
           {...props}
           toolbarService={toolbarService}
@@ -121,6 +123,7 @@ const cornerstoneExtension: Types.Extensions.Extension = {
           },
           getEnabledElement,
           dicomLoaderService,
+          registerColormap,
         },
       },
       {
@@ -141,5 +144,5 @@ const cornerstoneExtension: Types.Extensions.Extension = {
 };
 
 export type { PublicViewportOptions };
-export { measurementMappingUtils, CornerstoneExtensionTypes, toolNames , getActiveViewportEnabledElement};
+export { measurementMappingUtils, CornerstoneExtensionTypes, toolNames, getActiveViewportEnabledElement };
 export default cornerstoneExtension;
